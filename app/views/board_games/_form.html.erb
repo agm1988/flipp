@@ -1,0 +1,10 @@
+<%= form_for(:game, url: process_command_board_games_path, remote: true) do |f| %>
+  <div class="form-row">
+    <%= f.label :command, 'Command', class: "std-label" %>
+    <%= f.text_field :command, class: 'std-textarea', placeholder: 'Type command here' %>
+  </div>
+
+  <div class="form-row">
+    <%= f.submit "Submit", class: "std-btn" %>
+  </div>
+<% end %>
