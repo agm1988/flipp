@@ -1,31 +1,19 @@
-<div class="wrapper main_board col-lg-4 col-xs-12">
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
-
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
-
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
-
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
-
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
-  <div class='board_cell'></div>
+<div class='wrapper main_board col-lg-4 col-xs-12'>
+  <% ENV['SIZE_OF_BOARD_CALCULATED_FROM_ZERO'].to_i.downto(0).each do |y| %>
+    <% 0.upto(ENV['SIZE_OF_BOARD_CALCULATED_FROM_ZERO'].to_i).each do |x| %>
+      <% if @protocol && x == @protocol[:x] && y == @protocol[:y] %>
+        <div class="board_cell <%= @protocol[:status] == :error ? 'error_cell' : '' %>">
+          <div class='content'>
+            <%= entity_icon(@protocol[:face]) %>
+          </div>
+        </div>
+      <% else %>
+        <div class='board_cell'>
+          <div class='content'>
+            <%= "#{x}, #{y}" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
 </div>

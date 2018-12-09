@@ -1,1 +1,4 @@
 console.log("<%= escape_javascript(@protocol.inspect) %>");
+$('#game').empty();
+$('#game').append("<%= escape_javascript(render partial: 'board_games/game') %>");
+$('#command_input').val('');

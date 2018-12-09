@@ -1,0 +1,8 @@
+<% if @protocol && @protocol[:last_command] == :report %>
+  <div clas='text-center'>
+    REPORT
+    <span><strong>X: </strong></span><%= @protocol[:x] %>;
+    <span><strong>Y: </strong></span><%= @protocol[:y] %>;
+    <span><strong>FACE: </strong></span><%= @protocol[:face] %>
+  </div>
+<% end %>

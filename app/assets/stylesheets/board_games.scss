@@ -16,6 +16,7 @@
 //  padding: 5px;
 //}
 
+// TODO: make not dependent on board size, make dynamic
 .wrapper {
   display: grid;
   grid-template-columns:  repeat(5, 1fr);
@@ -53,3 +54,6 @@
   height: 100%;
 }
 
+.error_cell {
+  color: red;
+}

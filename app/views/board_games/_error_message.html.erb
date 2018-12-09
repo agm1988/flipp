@@ -1,0 +1,5 @@
+<% if @protocol && @protocol[:status] == :error %>
+  <div class='text-center text-danger'>
+    <%= @protocol[:message] %>
+  </div>
+<% end %>

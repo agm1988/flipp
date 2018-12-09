@@ -3,7 +3,8 @@
     <%= form_for(:game, url: process_command_board_games_path, remote: true) do |f| %>
       <div class='form-group'>
         <%= f.label :command, 'Command' %>
-        <%= f.text_field :command, class: 'form-control', placeholder: 'Type command here' %>
+        <%= f.text_field :command, class: 'form-control', id: 'command_input', required: true,
+          placeholder: 'Type command here' %>
       </div>
 
       <div class='form-group'>
