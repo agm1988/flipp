@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .main_board {
-  border: 1px solid black;
+  //border: 1px solid black;
   margin: auto;
 }
 
@@ -37,7 +37,7 @@
 .board_cell {
   position: relative;
   width: 100%;
-  border: 1px solid green;
+  border: 1px solid #adadad;
   background: #DADADA;
   //height: 100%;
 }

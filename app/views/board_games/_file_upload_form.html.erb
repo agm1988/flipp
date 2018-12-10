@@ -1,0 +1,13 @@
+<div class="col-md-6 col-xs-12">
+  <%= form_for(:game, url: process_command_file_board_games_path, remote: true) do |f| %>
+    <div class='form-group'>
+      <%= f.label :command_file, 'Command File' %>
+      <%= f.file_field :command_file, class: 'form-control', id: 'command_file_input', required: true,
+                       accept:'text/csv', placeholder: 'Type command here' %>
+    </div>
+
+    <div class='form-group'>
+      <%= f.submit 'Submit', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

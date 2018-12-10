@@ -1,5 +1,5 @@
-<% if @protocol && @protocol[:status] == :error %>
-  <div class='text-center text-danger'>
+<div class='text-center text-danger' id='game_error_message'>
+  <% if @protocol && @protocol[:status] == :error %>
     <%= @protocol[:message] %>
-  </div>
-<% end %>
+  <% end %>
+</div>

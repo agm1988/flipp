@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :board_games, only: [:index] do
     collection do
       post :process_command
+      post :process_command_file
     end
   end
 

@@ -1,5 +1,5 @@
 class BoardGamesController < ApplicationController
-  before_action :clear_board_session, only: [:index]
+  before_action :clear_board_session, only: [:index, :process_command_file]
 
   def index
   end
@@ -12,6 +12,14 @@ class BoardGamesController < ApplicationController
     ).run(params[:game][:command])
 
     update_board_session(@protocol)
+  end
+
+  def process_command_file
+    @protocol = CommandFileProcessorService.call(params['game']['command_file'])
+
+    render 'process_command'
+  rescue => e
+    render 'file_upload_error', locals: { error_message: e.message }
   end
 
   private
