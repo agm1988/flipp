@@ -1,25 +1,25 @@
 module Board
   class Game
-    MIN_BOARD_SIZE = 2.freeze # 0..4 5x5
+    MIN_BOARD_SIZE = 2.freeze
     X_AXIS_LOCATIONS = %w[WEST EAST].freeze
     Y_AXIS_LOCATIONS = %w[NORTH SOUTH].freeze
     FACE_LOCATIONS = X_AXIS_LOCATIONS.zip(Y_AXIS_LOCATIONS).flatten.freeze
     POSITIVE_MOVE_FACE_LOCATIONS = %w[NORTH EAST].freeze
     STEP = 1.freeze
-    PLACE_CMD = /\APLACE\s\d,\s\d,\s(?:west|north|east|south)\z/i
+    PLACE_CMD = /\APLACE\s\d,\d,(?:west|north|east|south)\z/i
 
     attr_reader :x, :y, :face, :board_size, :last_command
 
-    def initialize(board_size, x: nil, y: nil, face: nil)
+    def initialize(board_size, x:, y:, face:)
       @x = x
       @y = y
       @face = face
       @board_size = board_size
     end
 
-    def self.call(board_size, x:, y:, face:)
-      raise 'Not integer' unless board_size.is_a?(Integer)
-      raise 'Invalid board size' if board_size < MIN_BOARD_SIZE
+    def self.call(board_size, x: nil, y: nil, face: nil)
+      raise Exceptions::NotIntegerValue unless board_size.is_a?(Integer)
+      raise Exceptions::InvalidBoardSize if board_size < MIN_BOARD_SIZE
 
       new(board_size, x: x, y: y, face: face)
     end
@@ -47,15 +47,14 @@ module Board
     end
 
     def process_command(cmd)
-      puts "Process command"
       case cmd
       when PLACE_CMD
         process_place_command(cmd)
-      when "MOVE"
+      when 'MOVE'
         process_move
-      when "LEFT", "RIGHT"
+      when 'LEFT', 'RIGHT'
         process_turn(cmd)
-      when "REPORT"
+      when 'REPORT'
         process_report
       else
         process_unknown_command
@@ -63,7 +62,7 @@ module Board
     end
 
     def process_place_command(cmd)
-      data = cmd.gsub("PLACE ", "").split(", ")
+      data = cmd.gsub('PLACE ', '').split(',')
       x_value = data[0].to_i
       y_value = data[1].to_i
 
@@ -80,15 +79,15 @@ module Board
       turn_mod = cmd == 'LEFT' ? -1 : 1
       idx = FACE_LOCATIONS.index(@face) + STEP * turn_mod
       new_idx = idx == FACE_LOCATIONS.size ? 0 : idx
+
       @face = FACE_LOCATIONS[new_idx]
       @last_command = cmd.downcase.to_sym
     end
 
     def process_move
-      move_mod = POSITIVE_MOVE_FACE_LOCATIONS.include?(@face) ? 1 : -1
-      axis = X_AXIS_LOCATIONS.include?(@face) ? :x : :y
+      axis = find_axis
+      new_value = instance_variable_get("@#{axis}") + STEP * move_mode
 
-      new_value = instance_variable_get("@#{axis}") + STEP * move_mod
       raise Exceptions::BoardExceededException if new_value < 0 || new_value > @board_size
 
       instance_variable_set("@#{axis}", new_value)
@@ -103,6 +102,14 @@ module Board
       @last_command = :unknown
 
       raise Exceptions::UnknownCommandException
+    end
+
+    def find_axis
+      X_AXIS_LOCATIONS.include?(@face) ? :x : :y
+    end
+
+    def move_mode
+      POSITIVE_MOVE_FACE_LOCATIONS.include?(@face) ? 1 : -1
     end
   end
 end
