@@ -5,6 +5,7 @@ module FileParserClient
 
   # TODO: catch all parse errors and re raise with FileParserException
   def self.call(file)
+
     parser_class =
       case File.extname(file.original_filename)
       when '.csv'

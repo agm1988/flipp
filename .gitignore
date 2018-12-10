@@ -33,3 +33,4 @@ config/database.yml
 log/
 .idea/
 .env
+coverage

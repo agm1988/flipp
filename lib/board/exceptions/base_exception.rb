@@ -2,7 +2,7 @@ module Board
   module Exceptions
     class BaseException < StandardError
       def message
-        'Board game error'
+        'Board game exception'
       end
     end
   end
