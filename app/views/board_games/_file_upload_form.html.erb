@@ -10,4 +10,11 @@
       <%= f.submit 'Submit', class: 'btn btn-primary' %>
     </div>
   <% end %>
+
+  <div>
+    <div>
+      <%= link_to 'CSV example', asset_path('/command_file.csv'), download: '' %> |
+      <%= link_to 'TXT example', asset_path('/command_file.txt'), download: '' %>
+    </div>
+  </div>
 </div>
