@@ -3,49 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .main_board {
-  //border: 1px solid black;
   margin: auto;
-}
-
-//.board_row .board_cell {
-//  width: 50px;
-//  height: 50px;
-//  border: 1px solid green;
-//  float: left;
-//  margin: 5px;
-//  padding: 5px;
-//}
-
-// TODO: make not dependent on board size, make dynamic
-.wrapper {
-  display: grid;
-  grid-template-columns:  repeat(5, 1fr);
-  grid-gap: 10px;
-  width: 100%;
-  //grid-auto-rows: 50px;
-}
-
-.board_cell {
-  //width: 100px;
-  //height: 100px;
-  //border: 1px solid green;
-  //float: left;
-  //margin: 5px;
-  //padding: 5px;
-}
-
-.board_cell {
-  position: relative;
-  width: 100%;
-  border: 1px solid #adadad;
-  background: #DADADA;
-  //height: 100%;
-}
-
-.board_cell:after {
-  content: "";
-  display: block;
-  padding-bottom: 100%;
+  border: 1px solid black;
+  padding: 2px;
 }
 
 .content {
@@ -56,4 +16,28 @@
 
 .error_cell {
   color: red;
+}
+
+.flex_container {
+  //border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex_item {
+  border: 1px solid green;
+  width: 25%;
+  margin: 1%;
+  border: 1px solid #adadad;
+  background: #DADADA;
+}
+
+.flex_item:after{
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.fa:before {
+  vertical-align: super;
 }
