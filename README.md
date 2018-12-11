@@ -1,9 +1,6 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+better would be to use react for this kind of task :)
 
 * Ruby version
   
@@ -25,6 +22,8 @@ Things you may want to cover:
 * Database initialization
 
 * How to run the test suite
+
+  - bundle exec rspec --format progress
 
 * Services (job queues, cache servers, search engines, etc.)
 
